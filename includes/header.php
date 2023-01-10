@@ -16,16 +16,14 @@ require_once './includes/User.php';
 </head>
 
 <body>
-
     <div class="navContainer">
         <nav>
             <ul>
                 <?php
-
-                if (isset($_SESSION['login'])) {
+                if (isset($_POST['login'])) {
                 ?>
                     <li><a href="./index.php">Accueil</a></li>
-                    <li><a href="./profil.php">Mes scores</a></li>
+                    <li><a href="./scores.php">Mes scores</a></li>
                     <li><a href="./includes/logout.php">Déconnexion</a></li>
     </div>
 <?php
@@ -34,7 +32,6 @@ require_once './includes/User.php';
     <li><a href="./inscription.php">Inscription</a></li>
     <li><a href="./connexion.php">Connexion</a></li>
 <?php } ?>
-
 </ul>
 </nav>
 </div>

@@ -20,7 +20,6 @@ class User
     public function compare($login)
     {
         global $conn;
-
         $req = "SELECT COUNT(*) FROM utilisateurs WHERE login='$login';";
         $catchUsers = $conn->query($req);
         $count = $catchUsers->fetchColumn();
@@ -41,7 +40,6 @@ class User
             $newUser->bindParam(':password', $password);
             $newUser->bindParam(':score', $score);
             $newUser->execute();
-
             return TRUE;
         } else {
 
@@ -51,7 +49,6 @@ class User
 
     public function connect($login, $password)
     {
-
         global $conn;
         $req = "SELECT (login, password) FROM utilisateurs WHERE login=:login";
         $connUser = $conn->prepare($req);
@@ -63,5 +60,13 @@ class User
         } else {
             return FALSE;
         }
+    }
+
+    public function disconnect()
+    {
+        global $conn;
+        unset($_SESSION['login']);
+        session_destroy();
+        header('Location:../connexion.php');
     }
 }

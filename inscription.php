@@ -3,24 +3,22 @@ session_start();
 require_once './includes/header.php';
 require_once './includes/User.php';
 
-// $_POST['password'] = "";
-// $_POST['password2'] = "";
-
-if ((isset($_POST['submit'])) && (($_POST['password']) === $_POST['password2'])) {
-    $login = $_POST['login'];
-    $password = $_POST['password'];
-    $score = 0;
-    $newUser = new User();
-    if ($newUser->register($login, $password, $score)) {
-        echo "Votre compte a été créé avec succès";
+if (isset($_POST['submit'])) {
+    if ((($_POST['password']) === $_POST['password2'])) {
+        $login = $_POST['login'];
+        $password = $_POST['password'];
+        $score = 0;
+        $newUser = new User();
+        if ($newUser->register($login, $password, $score)) {
+            echo "Votre compte a été créé avec succès";
+            header('Refresh:3; url=connexion.php');
+        } else {
+            echo "Ce login est déjà pris";
+        }
     } else {
-        echo "Ce login est déjà pris";
+        echo "Les mots de passe ne correspondent pas";
     }
-} else {
-    echo "Les mots de passe ne correspondent pas";
 }
-
-
 ?>
 
 <!DOCTYPE html>

@@ -8,10 +8,11 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $connUser = new User;
     if ($connUser->compare($login, $password)) {
-    echo "Connexion réussie";
+        echo "Connexion réussie";
+        header('Refresh:3; url=scores.php');
     } else {
         echo "Ce login n'existe pas";
-    } 
+    }
 }
 
 ?>
