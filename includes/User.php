@@ -30,15 +30,14 @@ class User
         }
     }
 
-    public function register($login, $password, $score)
+    public function register($login, $password)
     {
         if (!$this->compare($login)) {
             global $conn;
-            $req = "INSERT INTO utilisateurs (login, password, score) VALUES (:login, :password, :score)";
+            $req = "INSERT INTO utilisateurs (login, password) VALUES (:login, :password)";
             $newUser = $conn->prepare($req);
             $newUser->bindParam(':login', $login);
             $newUser->bindParam(':password', $password);
-            $newUser->bindParam(':score', $score);
             $newUser->execute();
             return TRUE;
         } else {
@@ -47,36 +46,19 @@ class User
         }
     }
 
-    // public function connect($login, $password)
-    // {
-    //     global $conn;
-    //     $req = "SELECT (login, password) FROM utilisateurs WHERE login=:login";
-    //     $connUser = $conn->prepare($req);
-    //     $connUser->bindParam(':login', $login);
-    //     // $connUser->bindParam(':password', $password);
-
-    //     if ($this->compare($login)) {
-    //         $connUser->execute();
-    //         return TRUE;
-    //     } else {
-    //         return FALSE;
-    //     }
-    // }
-
-
     public function connect($login, $password)
     {
         global $conn;
-        $req = "SELECT * FROM utilisateurs WHERE login = :login"; // request SQL for compare the login in DDB with placeholder
-        $connUser = $conn->prepare($req); // prepare request
-        $connUser->bindParam(":login", $login); // bind value to placeholder
-        $connUser->execute(); // execute query
-        $results = $connUser->fetch(PDO::FETCH_ASSOC); // fetch results in assoc array
-        if ($results !== false) { // if results is not false so user exist
-            $hashedPassword = $results["password"]; // stock hashed password stocked in the BDD in this variable
-            if (password_verify($password, $hashedPassword)) { //verify matches
+        $req = "SELECT * FROM utilisateurs WHERE login = :login";
+        $connUser = $conn->prepare($req);
+        $connUser->bindParam(":login", $login);
+        $connUser->execute();
+        $results = $connUser->fetch(PDO::FETCH_ASSOC);
+        if ($results !== false) {
+            $hashedPassword = $results["password"];
+            if (password_verify($password, $hashedPassword)) {
                 $_SESSION['login'] = $login;
-                header("location: scores.php");
+                header("location: game.php");
             }
         }
     }

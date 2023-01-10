@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once './includes/header.php';
 require_once './includes/User.php';
 
@@ -9,7 +8,7 @@ if (isset($_POST['submit'])) {
     $connUser = new User;
     if ($connUser->connect($login, $password)) {
         echo "Connexion réussie";
-        header('Refresh:3; url=scores.php');
+        header('Refresh:3; url=game.php');
     } else {
         echo "Ce login n'existe pas";
     }

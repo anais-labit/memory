@@ -1,5 +1,7 @@
 <?php
 require_once './includes/User.php';
+session_start();
+
 
 ?>
 
@@ -23,6 +25,7 @@ require_once './includes/User.php';
                 if (isset($_SESSION['login'])) {
                 ?>
                     <li><a href="./index.php">Accueil</a></li>
+                    <li><a href="./game.php">Jouer</a></li>
                     <li><a href="./scores.php">Mes scores</a></li>
                     <li><a href="./includes/logout.php">Déconnexion</a></li>
     </div>

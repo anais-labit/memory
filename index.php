@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once './includes/header.php';
 ?>
 
@@ -26,13 +25,11 @@ require_once './includes/header.php';
         <div class="flip_card">
             <div class="flip_card_inner">
                 <div class="flip_card_front">
-                    <span> 2022</span>
+                    <span></span>
                 </div>
 
                 <div class="flip_card_back">
                     <h3>Certification AWS Cloud Practitioner</h3>
-                    <p>Amazon Web Service</p>
-                    <a href="https://www.credly.com/badges/08363970-aba5-4b36-8e09-9bada1097b07/public_url">Voir mon certificat</a>
                 </div>
             </div>
         </div>
