@@ -1,0 +1,100 @@
+/* RUBRIQUE FORMATIONS */
+
+/*  définir les proporités du container .flip_card */
+.flip_card {
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
+  z-index: 3;
+}
+
+.first_card {
+  margin-top: -70px;
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
+  background-color: #639fab;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  z-index: 3;
+}
+
+/* containeur de l'avant et l'arrière de la card */
+.flip_card_inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* tourner à 180° sur soi même quand hover sur lee container .flip_card */
+.flip_card:hover .flip_card_inner {
+  transform: rotateY(180deg);
+}
+
+/* placer l'avant et l'arrière de la card */
+.flip_card_front,
+.flip_card_back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+/* définir les propriétés du back de la card */
+.flip_card_back {
+  color: rgb(75, 69, 69);
+  transform: rotateY(180deg);
+  text-align: center;
+  padding: 5px;
+  margin-top: -40px;
+  background-color: #639fab;
+  color: #fff;
+}
+
+/* positionner les cartes côte à côte */
+.cards_container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 210px;
+  background-image: url(/img/bck2.jpg);
+  background-size: contain;
+}
+
+.cards_container .card_content {
+  background-color: #e0b825;
+  position: relative;
+  right: 90px;
+  top: -35px;
+  width: 150px;
+  height: 260px;
+  padding: 10px;
+  text-align: center;
+  writing-mode: vertical-rl;
+  color: #fdfbfb;
+  z-index: 3;
+}
+
+.cards_container .content2 {
+  background-color: #e0b825;
+  position: absolute;
+  right: 800px;
+  width: 150px;
+  padding: 10px;
+}
+
+.cards_container a {
+  color: rgb(95, 93, 93);
+}
+
+.flip_card_front span {
+  color: lightgray;
+  text-shadow: 2px 2px 3px rgb(75, 69, 69);
+  font-size: 70px;
+}
+
