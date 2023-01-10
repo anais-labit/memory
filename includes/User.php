@@ -47,18 +47,37 @@ class User
         }
     }
 
+    // public function connect($login, $password)
+    // {
+    //     global $conn;
+    //     $req = "SELECT (login, password) FROM utilisateurs WHERE login=:login";
+    //     $connUser = $conn->prepare($req);
+    //     $connUser->bindParam(':login', $login);
+    //     // $connUser->bindParam(':password', $password);
+
+    //     if ($this->compare($login)) {
+    //         $connUser->execute();
+    //         return TRUE;
+    //     } else {
+    //         return FALSE;
+    //     }
+    // }
+
+
     public function connect($login, $password)
     {
         global $conn;
-        $req = "SELECT (login, password) FROM utilisateurs WHERE login=:login";
-        $connUser = $conn->prepare($req);
-        $connUser->bindParam(':login', $login);
-        $connUser->bindParam(':password', $password);
-        if ($this->compare($login, $password)) {
-            $connUser->execute();
-            return TRUE;
-        } else {
-            return FALSE;
+        $req = "SELECT * FROM utilisateurs WHERE login = :login"; // request SQL for compare the login in DDB with placeholder
+        $connUser = $conn->prepare($req); // prepare request
+        $connUser->bindParam(":login", $login); // bind value to placeholder
+        $connUser->execute(); // execute query
+        $results = $connUser->fetch(PDO::FETCH_ASSOC); // fetch results in assoc array
+        if ($results !== false) { // if results is not false so user exist
+            $hashedPassword = $results["password"]; // stock hashed password stocked in the BDD in this variable
+            if (password_verify($password, $hashedPassword)) { //verify matches
+                $_SESSION['login'] = $login;
+                header("location: scores.php");
+            }
         }
     }
 

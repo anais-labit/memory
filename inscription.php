@@ -6,7 +6,7 @@ require_once './includes/User.php';
 if (isset($_POST['submit'])) {
     if ((($_POST['password']) === $_POST['password2'])) {
         $login = $_POST['login'];
-        $password = $_POST['password'];
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $score = 0;
         $newUser = new User();
         if ($newUser->register($login, $password, $score)) {

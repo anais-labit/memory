@@ -20,14 +20,13 @@ require_once './includes/User.php';
         <nav>
             <ul>
                 <?php
-                if (isset($_POST['login'])) {
+                if (isset($_SESSION['login'])) {
                 ?>
                     <li><a href="./index.php">Accueil</a></li>
                     <li><a href="./scores.php">Mes scores</a></li>
                     <li><a href="./includes/logout.php">Déconnexion</a></li>
     </div>
-<?php
-                } else { ?>
+<?php } else { ?>
     <li><a href="./index.php">Accueil</a></li>
     <li><a href="./inscription.php">Inscription</a></li>
     <li><a href="./connexion.php">Connexion</a></li>

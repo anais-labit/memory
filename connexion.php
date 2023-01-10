@@ -7,14 +7,13 @@ if (isset($_POST['submit'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
     $connUser = new User;
-    if ($connUser->compare($login, $password)) {
+    if ($connUser->connect($login, $password)) {
         echo "Connexion réussie";
         header('Refresh:3; url=scores.php');
     } else {
         echo "Ce login n'existe pas";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
