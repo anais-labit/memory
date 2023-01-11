@@ -40,10 +40,12 @@ if (isset($_GET['id'])) {
             $board = new Card();
             $board->displayBoard();
             // var_dump($_SESSION)
-
+            
         }
 
         ?>
+
+
 
     </table>
 </body>

@@ -40,9 +40,12 @@ class Card
 
     public function displayBoard()
     {
+
         foreach ($_SESSION['gameOn'] as $card) {
             if ($card->flipped == FALSE) {
-                echo "<img src='./img/$card->back'>" ;
+                // print_r($card['id']);
+                // echo "<button><img src='./img/$card->back'></button>";
+                echo "<a href='game.php?id=$card->id'><button><img src='./img/$card->back'></button></a>";
             } elseif (isset($_GET['id'])) {
                 $card->flipped == TRUE;
                 echo $card->front;
