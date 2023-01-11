@@ -3,11 +3,18 @@ require_once './includes/Card.php';
 require_once './includes/header.php';
 
 $_SESSION['gameOn'] = (isset($_SESSION['gameOn'])) ? $_SESSION['gameOn'] : [];
+var_dump($_POST);
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['newGame'])) {
     $gameOn = new Card();
     $_SESSION['gameOn'] = $gameOn->shuffle();
+    var_dump($_SESSION['gameOn']);
 }
+
+if (isset($_GET['id'])) {
+    var_dump($_GET['id']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -23,19 +30,22 @@ if (isset($_POST['submit'])) {
 <body>
 
     <form action="game.php" method="post">
-        <input type="submit" name="submit" value="Lancer une partie">
+        <input type="submit" name="newGame" value="Lancer une partie">
     </form>
-
     <table>
         <?php
-        foreach ($_SESSION['gameOn'] as $card) {
-            echo "<a href=\"game.php?id=$card\"><button><img src='./img/$card.png'></button></a>";
-            // echo $card;
+
+
+        if (isset($_SESSION['gameOn'])) {
+            $board = new Card();
+            $board->displayBoard();
+            // var_dump($_SESSION)
+
         }
+
         ?>
+
     </table>
-
-
 </body>
 
 </html>
