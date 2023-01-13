@@ -1,5 +1,9 @@
 <?php
 require_once './includes/header.php';
+
+if (isset($_POST['play'])) {
+    header('Location: game.php');
+}
 ?>
 
 
@@ -16,62 +20,19 @@ require_once './includes/header.php';
 
 <body>
 
+    <h3>Bienvenue sur le jeu du memory</h3>
 
-    <div class="cards_container">
-        <div class="card_content">
-            <h1 id="form">Memory</h1>
-        </div>
+    <?php
+    if (isset($_SESSION['login'])) { ?>
 
-        <div class="flip_card">
-            <div class="flip_card_inner">
-                <div class="flip_card_front">
-                    <span></span>
-                </div>
+        <form action="index.php" method="post">
+            <input type="submit" name="play" value="Lancer une partie">
+        </form>
+    <?php
+    }
 
-                <div class="flip_card_back">
-                    <h3>Certification AWS Cloud Practitioner</h3>
-                </div>
-            </div>
-        </div>
+    ?>
 
-        <div class="flip_card">
-            <div class="flip_card_inner">
-                <div class="flip_card_front">
-                    <span> 2015</span>
-                </div>
-                <div class="flip_card_back">
-                    <h3>Master Médiation culturelle des arts</h3>
-                    <p>Mémoire : « Le cinéma, un Art au cœur d’une industrie. »</p>
-                    <p>Aix-Marseille Université</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="flip_card">
-            <div class="flip_card_inner">
-                <div class="flip_card_front">
-                    <span>2013</span>
-                </div>
-                <div class="flip_card_back">
-                    <h3>Licence Anthropologie Culturelle</h3>
-                    <p>University of Sussex (GB)</p>
-                    <a href="https://www.sussex.ac.uk/anthropology/">Découvrir l'université</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="flip_card">
-            <div class="flip_card_inner">
-                <div class="flip_card_front">
-                    <span> 2010 </span>
-                </div>
-                <div class="flip_card_back">
-                    <h3>Lycée Sacré-coeur <br />Aix-en-Provence</h3>
-                    <p>Baccalauréat littéraire spécialité cinéma</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </body>
 

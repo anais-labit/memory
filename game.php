@@ -3,16 +3,10 @@ require_once './includes/Card.php';
 require_once './includes/header.php';
 
 $_SESSION['gameOn'] = (isset($_SESSION['gameOn'])) ? $_SESSION['gameOn'] : [];
-var_dump($_POST);
 
 if (isset($_POST['newGame'])) {
     $gameOn = new Card();
     $_SESSION['gameOn'] = $gameOn->shuffle();
-    var_dump($_SESSION['gameOn']);
-}
-
-if (isset($_GET['id'])) {
-    var_dump($_GET['id']);
 }
 
 ?>
@@ -35,17 +29,21 @@ if (isset($_GET['id'])) {
     <table>
         <?php
 
-
-        if (isset($_SESSION['gameOn'])) {
+        if ((isset($_SESSION['login'])) && (isset($_SESSION['gameOn']))) {
             $board = new Card();
             $board->displayBoard();
-            // var_dump($_SESSION)
-            
+
+            $cardFlipped = new Card();
+            $cardFlipped->cardFlipped();
+
+            $cardMatched = new Card();
+            $cardMatched->matched();
+
+            $static = new Card();
+            $static->static();
         }
 
         ?>
-
-
 
     </table>
 </body>
